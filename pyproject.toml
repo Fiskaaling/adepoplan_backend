@@ -21,3 +21,4 @@ version = {attr = "adepoplan_backend.__version__"}
 [tool.pytest.ini_options]
 minversion = 6.0
 testpaths = ["tests"]
+markers = {end_to_end = "End-to-end tests"}
