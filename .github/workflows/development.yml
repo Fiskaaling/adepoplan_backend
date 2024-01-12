@@ -4,7 +4,8 @@ on: push
 
 jobs:
   unit_test_job:
-    runs-on: continuumio/miniconda3
+    runs-on: ubuntu-latest
+    container: continuumio/miniconda3
     name: Run unit tests
     steps:
       - name: Checkout
