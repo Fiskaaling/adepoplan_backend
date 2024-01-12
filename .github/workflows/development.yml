@@ -4,11 +4,13 @@ on: push
 
 jobs:
   unit_test_job:
-    runs-on: ubuntu-latest
+    runs-on: continuumio/miniconda3
     name: Run unit tests
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Create conda environment
+        run: conda env create -y -n testenv -f conda.yaml
       - name: Install package
         run: pip install .
       - name: Install pytest
