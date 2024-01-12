@@ -6,6 +6,15 @@ build-backend = "setuptools.build_meta"
 name = "adepoplan_backend"
 dynamic = ["version"]
 
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+adepoplan_backend = ["*.html", "*.yaml"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.setuptools.dynamic]
 version = {attr = "adepoplan_backend.__version__"}
 
