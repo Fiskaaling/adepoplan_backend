@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adepoplan_backend"
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {attr = "adepoplan_backend.__version__"}
+
+[tool.pytest.ini_options]
+minversion = 6.0
+testpaths = ["tests"]
