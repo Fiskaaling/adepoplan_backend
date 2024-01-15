@@ -33,7 +33,7 @@ def create_crecon_file_for_particle_counting(stream, outfile, ladim_file):
 def create_crecon_file_for_concentration(stream, outfile, ladim_file):
     import importlib.resources
     from . import templates
-    resource_file = importlib.resources.files(templates).joinpath('crecon1.yaml')
+    resource_file = importlib.resources.files(templates).joinpath('crecon2.yaml')
     txt_template = resource_file.read_text(encoding='utf-8')
     txt = txt_template.format(
         crecon_output_file=outfile,
