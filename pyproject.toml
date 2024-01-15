@@ -5,6 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "adepoplan_backend"
 dynamic = ["version"]
+authors = [
+    {name = "Pål Næverlid Sævik", email = "paal.naeverlid.saevik@hi.no"},
+    {name = "Birgitta Andreasen", email = "birgitta@firum.fo"},
+]
+description = "Backend for computing ADepoPlan simulations"
+license = {text = "MIT"}
+dependencies = [
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.html", "*.yaml"]
 
 [tool.setuptools.dynamic]
 version = {attr = "adepoplan_backend.__version__"}
@@ -12,3 +26,4 @@ version = {attr = "adepoplan_backend.__version__"}
 [tool.pytest.ini_options]
 minversion = 6.0
 testpaths = ["tests"]
+markers = {end_to_end = "End-to-end tests"}
