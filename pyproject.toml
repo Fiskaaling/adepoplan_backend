@@ -12,6 +12,9 @@ authors = [
 description = "Backend for computing ADepoPlan simulations"
 license = {text = "MIT"}
 dependencies = [
+    "ladim",
+    "ladim-plugins",
+    "ladim-aggregate",
 ]
 
 [tool.setuptools.packages.find]

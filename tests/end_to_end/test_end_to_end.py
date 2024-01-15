@@ -28,3 +28,13 @@ def outdir(request, tmp_path_factory):
 @pytest.mark.end_to_end
 def test_contains_report(outdir):
     assert (outdir / 'report.html').exists()
+
+
+@pytest.mark.end_to_end
+def test_particle_output_file_is_valid_netcdf_file(outdir):
+    fname = outdir / 'out.nc'
+    assert fname.exists()
+
+    import xarray as xr
+    with xr.open_dataset(fname) as dset:
+        assert 'particle_instance' in dset.dims

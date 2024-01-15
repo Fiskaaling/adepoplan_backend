@@ -12,9 +12,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Create conda environment
         run: conda env create -y -n testenv -f conda.yaml
+      - name: Dump conda environment
+        run: conda list -n testenv
       - name: Install package
-        run: pip install .
+        run: conda run -n testenv pip install .
       - name: Install pytest
-        run: pip install pytest
+        run: conda run -n testenv pip install pytest
       - name: Run unit tests
-        run: pytest
+        run: conda run -n testenv pytest
