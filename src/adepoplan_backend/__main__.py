@@ -1,2 +1,4 @@
 import adepoplan_backend.scripts
-adepoplan_backend.scripts.main()
+import sys
+
+adepoplan_backend.scripts.main(sys.argv[1:])
