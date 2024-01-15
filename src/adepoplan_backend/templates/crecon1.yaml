@@ -1,3 +1,6 @@
 bins:
   cage_id: group_by
   release_time: 86400
+
+infile: {ladim_output_file}
+outfile: {crecon_output_file}
