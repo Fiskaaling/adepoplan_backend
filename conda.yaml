@@ -1,2 +1,7 @@
 dependencies:
   - numpy
+  - netcdf4
+  - matplotlib
+  - pandas
+  - xarray
+  - pyproj
