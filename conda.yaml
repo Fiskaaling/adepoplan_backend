@@ -5,3 +5,4 @@ dependencies:
   - pandas
   - xarray
   - pyproj
+  - scipy
