@@ -5,15 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "adepoplan_backend"
 dynamic = ["version"]
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.package-data]
-adepoplan_backend = ["*.html", "*.yaml"]
+authors = [
+    {name = "Pål Næverlid Sævik", email = "paal.naeverlid.saevik@hi.no"},
+    {name = "Birgitta Andreasen", email = "birgitta@firum.fo"},
+]
+description = "Backend for computing ADepoPlan simulations"
+license = {text = "MIT"}
+dependencies = [
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.html", "*.yaml"]
 
 [tool.setuptools.dynamic]
 version = {attr = "adepoplan_backend.__version__"}
