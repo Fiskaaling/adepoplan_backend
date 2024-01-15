@@ -72,13 +72,13 @@ ibm:
 
 
 particle_release:
-    variables: [active, release_time, X, Y, Z, sink_vel, cage_id]
+    variables: [active, release_time, X, Y, Z, sink_vel, poly_id]
     release_time: time   # np.datetime64[s]
     active: int
-    cage_id: int
+    poly_id: int
 
     # Mark variables as time independent
-    particle_variables: [release_time, cage_id]
+    particle_variables: [release_time, poly_id]
 
 
 output_variables:
@@ -86,7 +86,7 @@ output_variables:
     outper: [60, s]
 
     # Variables included in output
-    particle: [release_time, cage_id]
+    particle: [release_time, poly_id]
     instance: [pid, X, Y, Z, lat, lon, active]
 
 
@@ -143,9 +143,9 @@ output_variables:
         flag_meanings: inactive active,
 
     # Output format for the cage id
-    cage_id:
+    poly_id:
         ncformat: i4,
-        long_name: cage id,
+        long_name: cage-specific polygon identifier,
 
 
 numerics:

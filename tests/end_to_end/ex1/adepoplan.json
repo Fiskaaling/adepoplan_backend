@@ -1,7 +1,8 @@
 {
   "user_input": {
     "start_time": "2022-06-01 01:00:00",
-    "stop_time": "2022-06-01 01:05:00"
+    "stop_time": "2022-06-01 01:05:00",
+    "feed_factor": 1.25
   },
   "particles": {
     "file": "out.nc"
@@ -10,7 +11,9 @@
     "conc_file": "conc.nc",
     "count_file": "count.nc",
     "count_conf_file": "crecon_count.yaml",
-    "conc_conf_file": "crecon_conc.yaml"
+    "conc_conf_file": "crecon_conc.yaml",
+    "feed_file": "feed.csv",
+    "weight_file": "weights.nc"
   },
   "report": {
     "file": "report.html"

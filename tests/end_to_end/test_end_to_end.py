@@ -40,6 +40,8 @@ def test_produces_expected_files(outdir):
         'particles.rls',
         'report.html',
         'roms_small.nc',
+        'feed.csv',
+        'weights.nc'
     }
 
 
