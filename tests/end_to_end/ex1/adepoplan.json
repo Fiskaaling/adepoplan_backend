@@ -1,4 +1,11 @@
 {
+  "user_input": {
+    "start_time": "2022-06-01 01:00:00",
+    "stop_time": "2022-06-01 01:05:00"
+  },
+  "particles": {
+    "file": "out.nc"
+  },
   "report": {
     "file": "report.html"
   }

@@ -2,6 +2,9 @@ def main(*args):
     config_file_name = args[0]
     config = read_config(config_file_name)
 
+    import adepoplan_backend.particles
+    adepoplan_backend.particles.make_particles(config)
+
     import adepoplan_backend.report
     adepoplan_backend.report.make_report(config)
 
