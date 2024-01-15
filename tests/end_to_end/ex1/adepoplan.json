@@ -8,7 +8,9 @@
   },
   "concentration": {
     "conc_file": "conc.nc",
-    "count_file": "count.nc"
+    "count_file": "count.nc",
+    "count_conf_file": "crecon_count.yaml",
+    "conc_conf_file": "crecon_conc.yaml"
   },
   "report": {
     "file": "report.html"

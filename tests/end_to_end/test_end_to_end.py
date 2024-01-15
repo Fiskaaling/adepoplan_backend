@@ -27,18 +27,26 @@ def outdir(request, tmp_path_factory):
     yield simdir
 
 
-def test_contains_report(outdir):
-    assert (outdir / 'report.html').exists()
+def test_produces_expected_files(outdir):
+    filenames = {p.name for p in outdir.glob('*.*')}
+    assert filenames == {
+        'adepoplan.json',
+        'conc.nc',
+        'count.nc',
+        'crecon_conc.yaml',
+        'crecon_count.yaml',
+        'ladim.yaml',
+        'out.nc',
+        'particles.rls',
+        'report.html',
+        'roms_small.nc',
+    }
 
 
 def test_particle_output_file_is_valid_netcdf_file(outdir):
     fname = outdir / 'out.nc'
     with xr.open_dataset(fname) as dset:
         assert 'particle_instance' in dset.dims
-
-
-def test_contains_particle_count_output_file(outdir):
-    assert (outdir / 'count.nc').exists()
 
 
 def test_concentration_output_file_is_valid_netcdf_file(outdir):
