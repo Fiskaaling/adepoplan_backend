@@ -1,7 +1,9 @@
 import adepoplan_backend
 import pytest
 from pathlib import Path
+import xarray as xr
 import shutil
+pytestmark = pytest.mark.end_to_end
 
 
 @pytest.fixture(scope='module', params=['ex1'])
@@ -25,16 +27,20 @@ def outdir(request, tmp_path_factory):
     yield simdir
 
 
-@pytest.mark.end_to_end
 def test_contains_report(outdir):
     assert (outdir / 'report.html').exists()
 
 
-@pytest.mark.end_to_end
 def test_particle_output_file_is_valid_netcdf_file(outdir):
     fname = outdir / 'out.nc'
-    assert fname.exists()
-
-    import xarray as xr
     with xr.open_dataset(fname) as dset:
         assert 'particle_instance' in dset.dims
+
+
+def test_contains_particle_count_output_file(outdir):
+    assert (outdir / 'count.nc').exists()
+
+
+def test_concentration_output_file_is_valid_netcdf_file(outdir):
+    fname = outdir / 'conc.nc'
+    xr.load_dataset(fname)

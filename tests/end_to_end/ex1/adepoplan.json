@@ -6,6 +6,10 @@
   "particles": {
     "file": "out.nc"
   },
+  "concentration": {
+    "conc_file": "conc.nc",
+    "count_file": "count.nc"
+  },
   "report": {
     "file": "report.html"
   }

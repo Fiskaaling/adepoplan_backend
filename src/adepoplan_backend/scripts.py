@@ -2,9 +2,15 @@ def main(*args):
     config_file_name = args[0]
     config = read_config(config_file_name)
 
+    # --- Build step: Create ladim output file ---
     import adepoplan_backend.particles
     adepoplan_backend.particles.make_particles(config)
 
+    # --- Build step: Create concentration file ---
+    import adepoplan_backend.concentration
+    adepoplan_backend.concentration.make_concentration(config)
+
+    # --- Build step: Create final report ---
     import adepoplan_backend.report
     adepoplan_backend.report.make_report(config)
 
