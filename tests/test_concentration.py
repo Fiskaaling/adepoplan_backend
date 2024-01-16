@@ -1,6 +1,8 @@
 from adepoplan_backend import concentration
 import io
 import yaml
+import pandas as pd
+import xarray as xr
 
 
 class Test_create_crecon_file_for_particle_counting:
@@ -27,3 +29,19 @@ class Test_create_crecon_file_for_concentration:
         buf.seek(0)
         result = yaml.safe_load(buf)
         assert isinstance(result, dict)
+
+
+class Test_compute_feed_rate:
+    def test_returns_kg_per_day_and_cage(self):
+        feed_df = pd.DataFrame(dict(
+            time=['1970-01', '1970-02', '1970-03', '1970-01', '1970-02'],
+            cage_id=['A', 'A', 'A', 'B', 'B'],
+            feed=[31, 28, 56, 310, 280],
+            poly_id=[1001, 1001, 1001, 1002, 1002],
+        ))
+        result = concentration.compute_feed_rate(feed_df)
+        assert result.name == 'rate'
+        assert result.dims == ('release_time', 'poly_id')
+        assert result['release_time'].values.tolist() == [0, 2678400, 5097600]
+        assert result['poly_id'].values.tolist() == [1001, 1002]
+        assert result.values.tolist() == [[1, 10], [1, 10], [2, 0]]

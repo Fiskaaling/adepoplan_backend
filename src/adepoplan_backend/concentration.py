@@ -2,25 +2,18 @@ def make_concentration(config):
     import ladim_aggregate
     import pandas as pd
 
-    # Step 1: Count the number of released particles per day and cage
+    # Step 1: Create particle count config file
     ladim_output_file = config['root_dir'] / config['particles']['file']
     crecon_count_fname = config['root_dir'] / config['concentration']['count_conf_file']
     count_fname = config['root_dir'] / config['concentration']['count_file']
     with open(crecon_count_fname, 'w', encoding='utf-8') as fp:
         create_crecon_file_for_particle_counting(fp, count_fname, ladim_output_file)
-    ladim_aggregate.main(str(crecon_count_fname))
 
-    # Step 2: Compute the feeding rate (kg per day)
-    feed_file = config['root_dir'] / config['concentration']['feed_file']
-    weight_file = config['root_dir'] / config['concentration']['weight_file']
-    feed_df = pd.read_csv(feed_file)
-    feed_rate = compute_feed_rate(feed_df)
-    feed_rate.to_netcdf(weight_file)
-
-    # Step 3: Compute concentrations
+    # Step 2: Create concentration config file
     crecon_conc_fname = config['root_dir'] / config['concentration']['conc_conf_file']
     conc_fname = config['root_dir'] / config['concentration']['conc_file']
     feed_factor = config['user_input']['feed_factor']
+    weight_file = config['root_dir'] / config['concentration']['weight_file']
     with open(crecon_conc_fname, 'w', encoding='utf-8') as fp:
         create_crecon_file_for_concentration(
             stream=fp, outfile=conc_fname, ladim_file=ladim_output_file,
@@ -28,6 +21,16 @@ def make_concentration(config):
             count_file=count_fname, cell_area=100,
         )
 
+    # Step 3: Compute the feeding rate (kg per day)
+    feed_file = config['root_dir'] / config['concentration']['feed_file']
+    feed_df = pd.read_csv(feed_file)
+    feed_rate = compute_feed_rate(feed_df)
+    feed_rate.to_netcdf(weight_file)
+
+    # Step 4: Count the particles
+    ladim_aggregate.main(str(crecon_count_fname))
+
+    # Step 5: Compute concentrations
     ladim_aggregate.main(str(crecon_conc_fname))
 
 
