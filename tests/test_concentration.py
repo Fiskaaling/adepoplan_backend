@@ -24,7 +24,7 @@ class Test_create_crecon_file_for_concentration:
         concentration.create_crecon_file_for_concentration(
             stream=buf, outfile="conc_fname", ladim_file="ladim_output_file",
             feed_factor=1.2, weight_file="weight_file",
-            count_file="count_fname", cell_area=100,
+            count_file="count_fname", cell_area=100, max_age=100,
         )
         buf.seek(0)
         result = yaml.safe_load(buf)

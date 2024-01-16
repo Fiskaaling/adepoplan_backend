@@ -5,6 +5,7 @@ bins:
   lon: 0.0002
 
 weights: ({feed_factor} / {cell_area}) * rate / pcount
+filter: age > {max_age}
 
 grid:
   - file: {weight_file}

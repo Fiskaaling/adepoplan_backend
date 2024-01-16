@@ -87,7 +87,7 @@ output_variables:
 
     # Variables included in output
     particle: [release_time, poly_id]
-    instance: [pid, X, Y, Z, lat, lon, active]
+    instance: [pid, X, Y, Z, lat, lon, active, age]
 
 
     # --- Output format for standard variables ---
@@ -137,15 +137,20 @@ output_variables:
 
     # Output format for the particle active indicator
     active:
-        ncformat: i4,
-        long_name: particle active mask,
+        ncformat: i4
+        long_name: particle active mask
         # flag_values: [0, 1],
-        flag_meanings: inactive active,
+        flag_meanings: inactive active
 
     # Output format for the cage id
     poly_id:
-        ncformat: i4,
-        long_name: cage-specific polygon identifier,
+        ncformat: i4
+        long_name: cage-specific polygon identifier
+
+    age:
+        ncformat: i4
+        long_name: particle age
+        units: s
 
 
 numerics:

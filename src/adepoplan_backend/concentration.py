@@ -1,6 +1,15 @@
 def make_concentration(config):
     import ladim_aggregate
     import pandas as pd
+    import yaml
+    import numpy as np
+
+    # Compute filter max age
+    ladim_input_file = config['root_dir'] / 'ladim.yaml'
+    max_age = np.timedelta64(config['user_input']['max_age'], 's')
+    with open(ladim_input_file, encoding='utf-8') as fp:
+        output_freq = yaml.safe_load(fp)['output_variables']['outper']
+        filter_max_age = max_age - np.timedelta64(output_freq[0], output_freq[1])
 
     # Step 1: Create particle count config file
     ladim_output_file = config['root_dir'] / config['particles']['file']
@@ -19,6 +28,7 @@ def make_concentration(config):
             stream=fp, outfile=conc_fname, ladim_file=ladim_output_file,
             feed_factor=feed_factor, weight_file=weight_file,
             count_file=count_fname, cell_area=100,
+            max_age=filter_max_age.astype('timedelta64[s]').astype('int64'),
         )
 
     # Step 3: Compute the feeding rate (kg per day)
@@ -48,7 +58,7 @@ def create_crecon_file_for_particle_counting(stream, outfile, ladim_file):
 
 def create_crecon_file_for_concentration(
         stream, outfile, ladim_file, feed_factor, weight_file, count_file,
-        cell_area,
+        cell_area, max_age,
 ):
     import importlib.resources
     from . import templates
@@ -61,6 +71,7 @@ def create_crecon_file_for_concentration(
         weight_file=weight_file,
         count_file=count_file,
         cell_area=cell_area,
+        max_age=max_age,
     )
     stream.write(txt)
 
