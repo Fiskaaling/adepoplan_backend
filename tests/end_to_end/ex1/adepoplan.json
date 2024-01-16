@@ -2,7 +2,8 @@
   "user_input": {
     "start_time": "2022-06-01 01:00:00",
     "stop_time": "2022-06-01 01:05:00",
-    "feed_factor": 1.25
+    "feed_factor": 1.25,
+    "max_age": 200
   },
   "particles": {
     "file": "out.nc"

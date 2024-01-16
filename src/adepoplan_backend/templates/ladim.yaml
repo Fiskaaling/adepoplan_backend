@@ -53,7 +53,7 @@ ibm:
     #   varname: grain_size
 
 
-    lifespan: 200  # Time (seconds) before a particle is taken out of the simulation
+    lifespan: {max_age}  # Time (seconds) before a particle is taken out of the simulation
 
     # Vertical diffusion [m*2/s] on the sea floor under resuspension conditions
     vertical_mixing:
