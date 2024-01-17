@@ -53,7 +53,7 @@ ibm:
     #   varname: grain_size
 
 
-    lifespan: 200  # Time (seconds) before a particle is taken out of the simulation
+    lifespan: {max_age}  # Time (seconds) before a particle is taken out of the simulation
 
     # Vertical diffusion [m*2/s] on the sea floor under resuspension conditions
     vertical_mixing:
@@ -72,12 +72,13 @@ ibm:
 
 
 particle_release:
-    variables: [active, release_time, X, Y, Z, sink_vel]
+    variables: [active, release_time, lon, lat, Z, sink_vel, poly_id]
     release_time: time   # np.datetime64[s]
     active: int
+    poly_id: int
 
     # Mark variables as time independent
-    particle_variables: [release_time]
+    particle_variables: [release_time, poly_id]
 
 
 output_variables:
@@ -85,8 +86,8 @@ output_variables:
     outper: [60, s]
 
     # Variables included in output
-    particle: [release_time]
-    instance: [pid, X, Y, Z, active]
+    particle: [release_time, poly_id]
+    instance: [pid, X, Y, Z, lat, lon, active, age]
 
 
     # --- Output format for standard variables ---
@@ -101,6 +102,20 @@ output_variables:
     pid:
         ncformat: i4
         long_name: particle identifier
+
+    # Output format for the latitude
+    lat:
+        ncformat: f4
+        standard_name: latitude
+        long_name: latitude
+        units: degrees_north
+
+    # Output format for the latitude
+    lon:
+        ncformat: f4
+        standard_name: longitude
+        long_name: longitude
+        units: degrees_east
 
     # Output format for the X coordinate
     X:
@@ -122,10 +137,20 @@ output_variables:
 
     # Output format for the particle active indicator
     active:
-        ncformat: i4,
-        long_name: particle active mask,
+        ncformat: i4
+        long_name: particle active mask
         # flag_values: [0, 1],
-        flag_meanings: inactive active,
+        flag_meanings: inactive active
+
+    # Output format for the cage id
+    poly_id:
+        ncformat: i4
+        long_name: cage-specific polygon identifier
+
+    age:
+        ncformat: i4
+        long_name: particle age
+        units: s
 
 
 numerics:

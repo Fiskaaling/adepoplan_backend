@@ -1,0 +1,21 @@
+bins:
+  poly_id: group_by
+  release_time: 86400
+  lat: 0.0001
+  lon: 0.0002
+
+weights: ({feed_factor} / {cell_area}) * rate / pcount
+filter: age > {max_age}
+
+grid:
+  - file: {weight_file}
+    variable: rate
+    method: bin
+  - file: {count_file}
+    variable: pcount
+    method: bin
+
+infile: {ladim_output_file}
+outfile: {crecon_output_file}
+
+output_varname: conc

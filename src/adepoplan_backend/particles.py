@@ -5,6 +5,7 @@ def make_particles(config):
         start_time=config['user_input']['start_time'],
         stop_time=config['user_input']['stop_time'],
         output_file=config['particles']['file'],
+        max_age=config['user_input']['max_age'],
     )
     ladim_config_file_name = config['root_dir'] / 'ladim.yaml'
     with open(ladim_config_file_name, 'w', encoding='utf-8') as fp:
