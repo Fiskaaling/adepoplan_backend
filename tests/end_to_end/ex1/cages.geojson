@@ -1,0 +1,33 @@
+{
+"type": "FeatureCollection",
+"name": "cages",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{
+  "type": "Feature", "properties": { "poly_id": 1001 },
+  "geometry":  {
+    "type": "Polygon",
+    "coordinates": [[
+        [ 5.49389425, 58.70761213 ],
+        [ 5.49259866, 58.70761213 ],
+        [ 5.49259866, 58.70951513 ],
+        [ 5.49389425, 58.70951513 ],
+        [ 5.49389425, 58.70761213 ]
+    ]]
+  }
+},
+{
+  "type": "Feature", "properties": { "poly_id": 1004 },
+  "geometry":  {
+    "type": "Polygon",
+    "coordinates": [[
+        [ 5.49259866, 58.70951513 ],
+        [ 5.49130291, 58.70951513 ],
+        [ 5.49130291, 58.71141814 ],
+        [ 5.49259866, 58.71141814 ],
+        [ 5.49259866, 58.70951513 ]
+    ]]
+  }
+}
+]
+}

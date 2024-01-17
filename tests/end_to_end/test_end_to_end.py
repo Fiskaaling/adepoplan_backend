@@ -41,7 +41,9 @@ def test_produces_expected_files(outdir):
         'report.html',
         'roms_small.nc',
         'feed.csv',
-        'weights.nc'
+        'weights.nc',
+        'cages.geojson',
+        'makrel.yaml'
     }
 
 

@@ -1,0 +1,22 @@
+columns:
+- active
+- date
+- longitude
+- latitude
+- depth
+- sink_vel
+- poly_id
+
+num: {num_particles}
+date:
+- {start_time}
+- {stop_time}
+location: {makrel_area_file}
+depth:
+- {min_release_depth}
+- {max_release_depth}
+active: 1
+sink_vel:
+  distribution: piecewise
+  knots: {sinkvel_knots}
+  cdf: {sinkvel_cdf}

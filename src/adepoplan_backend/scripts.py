@@ -2,6 +2,10 @@ def main(*args):
     config_file_name = args[0]
     config = read_config(config_file_name)
 
+    # --- Build step: Create release file ---
+    import adepoplan_backend.release
+    adepoplan_backend.release.make_release(config)
+
     # --- Build step: Create ladim output file ---
     import adepoplan_backend.particles
     adepoplan_backend.particles.make_particles(config)
