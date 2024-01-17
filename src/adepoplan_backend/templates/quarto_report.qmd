@@ -10,8 +10,8 @@ jupyter: python3
 ```{python}
 #| tags: [parameters]
 
-conc_file = "conc.nc"
 count_file = "count.nc"
+conc_file = "conc.nc"
 test = 3
 
 ```
@@ -25,10 +25,10 @@ print(f"This is the parameter test = {test}")
 ```{python}
 import xarray as xr
 
-count = xr.load_dataset("count.nc")
-conc = xr.load_dataset("conc.nc")
+count = xr.load_dataset(count_file)
+conc = xr.load_dataset(conc_file)
 
-conc['histogram_all'] = conc.histogram.sum(dim=['release_time','poly_id'])
+conc['conc_all'] = conc.conc.sum(dim=['release_time','poly_id'])
 
 ```
 
@@ -46,5 +46,5 @@ test report, see @fig-concentration.
 #| label: fig-concentration
 #| fig-cap: "this is a test caption"
 
-conc.histogram_all.plot.pcolormesh()
+conc.conc_all.plot.pcolormesh()
 ```

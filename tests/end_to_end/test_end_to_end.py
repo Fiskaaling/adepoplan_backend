@@ -43,7 +43,9 @@ def test_produces_expected_files(outdir):
         'feed.csv',
         'weights.nc',
         'cages.geojson',
-        'makrel.yaml'
+        'makrel.yaml',
+        'quarto_report.qmd',
+        'quarto_report.html',
     }
 
 
