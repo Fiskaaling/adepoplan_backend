@@ -17,3 +17,5 @@ grid:
 
 infile: {ladim_output_file}
 outfile: {crecon_output_file}
+
+output_varname: conc
