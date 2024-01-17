@@ -72,7 +72,7 @@ ibm:
 
 
 particle_release:
-    variables: [active, release_time, X, Y, Z, sink_vel, poly_id]
+    variables: [active, release_time, lon, lat, Z, sink_vel, poly_id]
     release_time: time   # np.datetime64[s]
     active: int
     poly_id: int
