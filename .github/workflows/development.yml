@@ -13,7 +13,7 @@ jobs:
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.3.340
+          version: 1.4.515
       - name: Create conda environment
         run: conda env create -y -n testenv -f conda.yaml
       - name: Dump conda environment
