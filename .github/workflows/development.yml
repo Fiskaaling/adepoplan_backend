@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
       - name: Create conda environment
         run: conda env create -y -n testenv -f conda.yaml
       - name: Dump conda environment
