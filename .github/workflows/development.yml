@@ -5,12 +5,12 @@ on: push
 jobs:
   unit_test_job:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
     container: continuumio/miniconda3
     name: Run unit tests
     steps:
+      - name: Update apt-get
+        run: |
+              sudo apt-get update
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Quarto
