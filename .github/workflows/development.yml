@@ -4,10 +4,13 @@ on: push
 
 jobs:
   unit_test_job:
-    runs-on: ubuntu-20.04
-    container: continuumio/miniconda3
+    runs-on: ubuntu-latest
     name: Run unit tests
     steps:
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-activate-base: true
+          activate-environment: ""
       - name: Update apt-get
         run: sudo apt-get update
       - name: Checkout
