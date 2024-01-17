@@ -44,6 +44,17 @@ def make_concentration(config):
     ladim_aggregate.main(str(crecon_conc_fname))
 
 
+def create_count(outfile, ladim_file):
+    import ladim_aggregate
+    conf = dict(
+        bins=dict(poly_id='group_by', release_time=86400),
+        filter_particle="pid > -1",
+        infile=ladim_file,
+        outfile=outfile,
+    )
+    ladim_aggregate.run_conf(conf)
+
+
 def create_crecon_file_for_particle_counting(stream, outfile, ladim_file):
     import importlib.resources
     from . import templates
