@@ -18,6 +18,10 @@ def main(*args):
     import adepoplan_backend.report
     adepoplan_backend.report.make_report(config)
 
+    # --- Build step: Create quarto report ---
+    import adepoplan_backend.quarto_report
+    adepoplan_backend.quarto_report.make_quarto_report(config)
+
 
 def read_config(fname):
     import json

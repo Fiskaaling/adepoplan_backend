@@ -1,0 +1,50 @@
+---
+title: "adepoplan demo"
+format:
+  html:
+    code-fold: true
+    embed-resources: true
+jupyter: python3
+---
+
+```{python}
+#| tags: [parameters]
+
+conc_file = "conc.nc"
+count_file = "count.nc"
+test = 3
+
+```
+
+```{python}
+
+print(f"This is the parameter test = {test}")
+
+```
+
+```{python}
+import xarray as xr
+
+count = xr.load_dataset("count.nc")
+conc = xr.load_dataset("conc.nc")
+
+conc['histogram_all'] = conc.histogram.sum(dim=['release_time','poly_id'])
+
+```
+
+```{python}
+count.pcount.plot()
+```
+
+```{python}
+conc
+```
+
+test report, see @fig-concentration.
+
+```{python}
+#| label: fig-concentration
+#| fig-cap: "this is a test caption"
+
+conc.histogram_all.plot.pcolormesh()
+```
