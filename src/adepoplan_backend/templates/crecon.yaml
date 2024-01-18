@@ -1,18 +1,15 @@
 bins:
   poly_id: group_by
   release_time: 86400
-  lat: 0.0001
-  lon: 0.0002
+  lat: {latdiff}
+  lon: {londiff}
 
-weights: ({feed_factor} / {cell_area}) * rate / pcount
+weights: ({feed_factor} / {cell_area}) * feed_per_particle
 filter: age > {max_age}
 
 grid:
   - file: {weight_file}
-    variable: rate
-    method: bin
-  - file: {count_file}
-    variable: pcount
+    variable: feed_per_particle
     method: bin
 
 infile: {ladim_output_file}

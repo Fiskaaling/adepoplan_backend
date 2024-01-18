@@ -10,26 +10,14 @@ from uuid import uuid4
 import numpy as np
 
 
-class Test_create_crecon_file_for_particle_counting:
-    def test_creates_valid_yaml_file(self):
-        buf = io.StringIO()
-        concentration.create_crecon_file_for_particle_counting(
-            stream=buf,
-            outfile='my_outfile.yaml',
-            ladim_file='ladim_output.nc',
-        )
-        buf.seek(0)
-        result = yaml.safe_load(buf)
-        assert isinstance(result, dict)
-
-
 class Test_create_crecon_file_for_concentration:
     def test_creates_valid_yaml_file(self):
         buf = io.StringIO()
         concentration.create_crecon_file_for_concentration(
             stream=buf, outfile="conc_fname", ladim_file="ladim_output_file",
             feed_factor=1.2, weight_file="weight_file",
-            count_file="count_fname", cell_area=100, max_age=100,
+            cell_area=100, max_age=100,
+            latdiff=0.001, londiff=0.002,
         )
         buf.seek(0)
         result = yaml.safe_load(buf)
@@ -110,9 +98,19 @@ class Test_create_weights:
         assert result['release_time'].values.tolist() == np.unique(posix_time).tolist()
         assert result['poly_id'].values.tolist() == np.unique(feed_df['poly_id']).tolist()
 
+        # Returns correct particle counts
+        assert result['pcount'].values.tolist() == [[2, 0], [0, 1], [0, 1]]
+
+        # Returns correct feed matrix
+        assert result['feed'].values.tolist() == [
+            [10.0, -10.0],
+            [100.0, -100.0],
+            [1000.0, 0.0]
+        ]
+
         # Returns correct weight per particle
         # If there are zero particles, the feed is divided by 1 instead of 0.
-        assert result.values.tolist() == [
+        assert result['feed_per_particle'].values.tolist() == [
             [5, -10],
             [100, -100],
             [1000, 0]
