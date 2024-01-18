@@ -55,6 +55,39 @@ def create_count(outfile, ladim_file):
     ladim_aggregate.run_conf(conf)
 
 
+def create_weights(feed_df, ladim_dset):
+    import numpy as np
+    import xarray as xr
+    import netCDF4 as nc
+
+    # Convert from long form to table form
+    feed_df['release_time'] = feed_df['time'].values.astype('datetime64[s]').astype('int64')
+    feed_df = feed_df[['release_time', 'poly_id', 'feed']].set_index(['release_time', 'poly_id'])
+    feed_dset = feed_df.to_xarray()
+    feed_dset['feed'] = feed_dset['feed'].fillna(0)
+
+    # Count number of particles released for each category
+    import ladim_aggregate
+    with nc.Dataset('count.nc', 'w', diskless=True) as count_dset:
+        time_bins = feed_dset['release_time'].values.tolist()
+        time_bins += np.diff(time_bins[-2:]).tolist()
+        conf = dict(
+            bins=dict(release_time=time_bins, poly_id='group_by'),
+            filter_particle="pid > -1",
+            infile=ladim_dset,
+            outfile=count_dset,
+        )
+        ladim_aggregate.run_conf(conf)
+        feed_dset['pcount'] = xr.DataArray(
+            data=count_dset.variables['histogram'][:],
+            coords=dict(poly_id=count_dset.variables['poly_id'][:]),
+            dims=('release_time', 'poly_id'),
+        ).sel(poly_id=feed_dset['poly_id'])
+
+    feed_per_particle = feed_dset['feed'] / np.maximum(feed_dset['pcount'], 1)
+    return feed_per_particle
+
+
 def create_crecon_file_for_particle_counting(stream, outfile, ladim_file):
     import importlib.resources
     from . import templates
