@@ -9,8 +9,8 @@
     "min_release_depth": 0,
     "max_release_depth": 10,
     "cell_area": 100,
-    "londiff": 0.0001,
-    "latdiff": 0.0001
+    "londiff": 0.0001967453,
+    "latdiff": 0.0000869307
   },
   "release": {
     "release_file": "particles.rls",
