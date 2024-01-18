@@ -32,9 +32,7 @@ def test_produces_expected_files(outdir):
     assert filenames == {
         'adepoplan.json',
         'conc.nc',
-        'count.nc',
-        'crecon_conc.yaml',
-        'crecon_count.yaml',
+        'crecon.yaml',
         'ladim.yaml',
         'out.nc',
         'particles.rls',

@@ -7,7 +7,10 @@
     "sinkvel_knots": [0.1, 0.05, 0.025, 0.015, 0.01, 0.005, 0],
     "sinkvel_cdf": [0.0, 0.662, 0.851, 0.883, 0.909, 0.937, 1.0],
     "min_release_depth": 0,
-    "max_release_depth": 10
+    "max_release_depth": 10,
+    "cell_area": 100,
+    "londiff": 0.0001967453,
+    "latdiff": 0.0000869307
   },
   "release": {
     "release_file": "particles.rls",
@@ -19,10 +22,8 @@
     "file": "out.nc"
   },
   "concentration": {
-    "conc_file": "conc.nc",
-    "count_file": "count.nc",
-    "count_conf_file": "crecon_count.yaml",
-    "conc_conf_file": "crecon_conc.yaml",
+    "file": "conc.nc",
+    "conf": "crecon.yaml",
     "feed_file": "feed.csv",
     "weight_file": "weights.nc"
   },
