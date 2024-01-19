@@ -8,8 +8,14 @@
     "sinkvel_cdf": [0.0, 0.662, 0.851, 0.883, 0.909, 0.937, 1.0],
     "min_release_depth": 0,
     "max_release_depth": 10,
-    "cell_area": 100,
-    "londiff": 0.0001967453,
-    "latdiff": 0.0000869307
+    "cell_area": 10000,
+    "londiff": 0.001967453,
+    "latdiff": 0.000869307
+  },
+  "release": {
+    "particles_per_day": 2000
+  },
+  "particles": {
+    "output_freq": [60, "s"]
   }
 }
