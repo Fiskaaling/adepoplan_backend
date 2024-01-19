@@ -1,0 +1,20 @@
+{
+  "release": {
+    "release_file": "particles.rls",
+    "config_file": "makrel.yaml",
+    "area_file": "cages.geojson",
+    "particles_per_day": 2000
+  },
+  "particles": {
+    "file": "out.nc"
+  },
+  "concentration": {
+    "file": "conc.nc",
+    "conf": "crecon.yaml",
+    "feed_file": "feed.csv",
+    "weight_file": "weights.nc"
+  },
+  "report": {
+    "file": "report.html"
+  }
+}

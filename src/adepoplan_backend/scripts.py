@@ -22,9 +22,28 @@ def main(*args):
 def read_config(fname):
     import json
     from pathlib import Path
+    import importlib.resources
+    from . import templates
+
+    templ_res = importlib.resources.files(templates)
+    with templ_res.joinpath('adepoplan.json').open(encoding='utf-8') as fp:
+        default_config = json.load(fp)
 
     with open(fname, encoding='utf-8') as fp:
-        config = json.load(fp)
+        user_config = json.load(fp)
 
+    config = merge_dict(default_config, user_config)
     config['root_dir'] = Path(fname).parent.absolute()
     return config
+
+
+def merge_dict(first, second):
+    result = {k: v for k, v in first.items() if k not in second}
+
+    for k, v in second.items():
+        if (k in first) and isinstance(v, dict) and isinstance(first[k], dict):
+            result[k] = merge_dict(first[k], v)
+        else:
+            result[k] = v
+
+    return result
