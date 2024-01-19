@@ -1,8 +1,22 @@
+# FEED DATA FILE
+# -----------------
+# Required columns: time, feed, poly_id
+# Separator: comma (,)
+# Comments: Optional, prefixed by #
+# Column formats:
+#     time: ISO 8601 (i.e., yyyy-mm-dd HH:MM:SS, time is optional)
+#     feed: Kilograms
+#     poly_id: A number unique to each cage, same as in `cages.geojson`
+#
+# Each entry in the table should be interpreted as the feed usage within a
+# certain time period. The `time` column should be interpreted as the start of
+# the time period, and the period ends when a new period starts.
+#
 time,cage_id,feed,poly_id
 2022-06-01 00:00:00,CAGE_A,0,1001
-2022-06-01 00:00:00,CAGE_B,0,1004
 2022-06-01 01:00:00,CAGE_A,100,1001
-2022-06-01 01:00:00,CAGE_B,100,1004
 2022-06-01 02:00:00,CAGE_A,200,1001
-2022-06-01 02:00:00,CAGE_B,0,1004
 2022-06-01 03:00:00,CAGE_A,0,1001
+2022-06-01 00:00:00,CAGE_B,0,1004
+2022-06-01 01:00:00,CAGE_B,100,1004
+2022-06-01 02:00:00,CAGE_B,0,1004

@@ -8,7 +8,7 @@ def make_concentration(config):
     # Step 1: Create weight file
     feed_file = config['root_dir'] / config['concentration']['feed_file']
     weight_file = config['root_dir'] / config['concentration']['weight_file']
-    feed_df = pd.read_csv(feed_file)
+    feed_df = pd.read_csv(feed_file, comment="#")
     ladim_output_file = config['root_dir'] / config['particles']['file']
     with xr.open_dataset(ladim_output_file, decode_cf=False) as ladim_dset:
         weights_dset = create_weights(feed_df, ladim_dset)
