@@ -1,0 +1,32 @@
+{
+  "user_input": {
+    "feed_factor": 1.25,
+    "max_age": 864000,
+    "sinkvel_knots": [0.1, 0.05, 0.025, 0.015, 0.01, 0.005, 0],
+    "sinkvel_cdf": [0.0, 0.662, 0.851, 0.883, 0.909, 0.937, 1.0],
+    "min_release_depth": 0,
+    "max_release_depth": 10,
+    "cell_area": 100,
+    "londiff": 0.0001967453,
+    "latdiff": 0.0000869307
+  },
+  "release": {
+    "release_file": "particles.rls",
+    "config_file": "makrel.yaml",
+    "area_file": "cages.geojson",
+    "particles_per_day": 2000
+  },
+  "particles": {
+    "file": "out.nc",
+    "output_freq": [24, "h"]
+  },
+  "concentration": {
+    "file": "conc.nc",
+    "conf": "crecon.yaml",
+    "feed_file": "feed.csv",
+    "weight_file": "weights.nc"
+  },
+  "report": {
+    "file": "report.html"
+  }
+}

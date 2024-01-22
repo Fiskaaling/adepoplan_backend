@@ -57,17 +57,66 @@ class Test_create_weights:
         # Returns correct particle counts
         assert result['pcount'].values.tolist() == [[2, 0], [0, 1], [0, 1]]
 
-        # Returns correct feed matrix
+        # Returns correct feed matrix (restricted to the given time span)
         assert result['feed'].values.tolist() == [
             [10.0, -10.0],
             [100.0, -100.0],
-            [1000.0, 0.0]
+            [0.0, 0.0]
         ]
 
         # Returns correct weight per particle
         # If there are zero particles, the feed is divided by 1 instead of 0.
+        # The two last entries are equal.
         assert result['feed_per_particle'].values.tolist() == [
             [5, -10],
             [100, -100],
-            [1000, 0]
+            [100, -100],
         ]
+
+
+class Test_restrict_feed_dset:
+    def test_returns_restricted_time(self):
+        full = xr.Dataset(
+            coords=dict(release_time=[10, 20, 30, 40, 50, 60], poly_id=[101]),
+            data_vars=dict(
+                feed=xr.Variable(
+                    dims=('release_time', 'poly_id'),
+                    data=np.array([[1., 2, 3, 4, 5, 6]]).T,
+                )
+            )
+        )
+        # Endpoints match exactly
+        restricted = concentration.restrict_feed_dset(full, 20, 40)
+        assert restricted.release_time.values.tolist() == [20, 30, 40]
+        # Endpoints exceed dataset
+        restricted = concentration.restrict_feed_dset(full, 0, 100)
+        assert restricted.release_time.values.tolist() == [10, 20, 30, 40, 50, 60]
+        # Partial endpoints
+        restricted = concentration.restrict_feed_dset(full, 25, 42)
+        assert restricted.release_time.values.tolist() == [25, 30, 40, 42]
+        # Partial endpoints, single bin
+        restricted = concentration.restrict_feed_dset(full, 22, 25)
+        assert restricted.release_time.values.tolist() == [22, 25]
+
+    def test_modifies_feed_value_at_endpoints(self):
+        full = xr.Dataset(
+            coords=dict(release_time=[4, 8, 12, 16, 20, 24], poly_id=[101]),
+            data_vars=dict(
+                feed=xr.Variable(
+                    dims=('release_time', 'poly_id'),
+                    data=np.array([[1., 2., 3., 4., 5., 6.]]).T,
+                )
+            )
+        )
+        # Endpoints match exactly
+        restricted = concentration.restrict_feed_dset(full, 8, 20)
+        assert restricted.feed.values.ravel().tolist() == [2, 3, 4, 0]
+        # Endpoints exceed dataset
+        restricted = concentration.restrict_feed_dset(full, 0, 100)
+        assert restricted.feed.values.ravel().tolist() == [1, 2, 3, 4, 5, 0]
+        # Partial endpoints
+        restricted = concentration.restrict_feed_dset(full, 7, 22)
+        assert restricted.feed.values.ravel().tolist() == [0.25, 2.0, 3.0, 4.0, 2.5, 0.0]
+        # Partial endpoints, single bin
+        restricted = concentration.restrict_feed_dset(full, 6, 7)
+        assert restricted.feed.values.ravel().tolist() == [0.25, 0]

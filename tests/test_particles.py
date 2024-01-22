@@ -8,6 +8,7 @@ class Test_get_ladim_config_text:
             stop_time='2022-01-02',
             output_file='my_output_file.nc',
             max_age=200,
+            out_freq=[1, "m"]
         )
 
         import yaml

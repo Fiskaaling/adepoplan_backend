@@ -83,7 +83,7 @@ particle_release:
 
 output_variables:
     # Frequency of output
-    outper: [60, s]
+    outper: {out_freq}
 
     # Variables included in output
     particle: [release_time, poly_id]

@@ -1,4 +1,17 @@
 {
+"comment": [
+  "CAGE GEOJSON FILE",
+  "----------------------",
+  "Comments are techincally not allowed inside a JSON file, which is why this",
+  "description is contained as a name/value pair.",
+
+  "The geojson file should contain one polygon for each cage. All polygons",
+  "should have an associated poly_id property, which should correspond to the",
+  "poly_id property given in the feed.csv file.",
+
+  "The geojson file structure is described by RFC 7946"
+],
+
 "type": "FeatureCollection",
 "name": "cages",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
