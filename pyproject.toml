@@ -21,7 +21,7 @@ dependencies = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-"*" = ["*.html", "*.yaml"]
+"*" = ["*.html", "*.yaml", "*.json"]
 
 [tool.setuptools.dynamic]
 version = {attr = "adepoplan_backend.__version__"}
