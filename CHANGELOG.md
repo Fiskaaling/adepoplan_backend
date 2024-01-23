@@ -5,6 +5,11 @@ All notable changes to the project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2024-01-23
+### Fixed
+- Feed to faeces conversion factor changed from the erroneous 1.25 to the 
+  correct 0.24 (Cubillo et al., 2016)
+
 ## [1.0.4] - 2024-01-22
 ### Fixed
 - Weight per particle now works also if only parts of the feeding period has
