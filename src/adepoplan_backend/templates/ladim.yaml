@@ -16,7 +16,8 @@ gridforce:
     # Module name is mandatory.
     # The other items are module dependent
     module: ladim_plugins.sedimentation
-    input_file: "roms_small.nc"  # Use wildcards (*) to select a range of files
+    input_file: {gridforcing}
+    #input_file: "roms_small.nc"  # Use wildcards (*) to select a range of files
 
 
 ibm:

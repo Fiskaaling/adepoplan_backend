@@ -17,6 +17,7 @@
     "particles_per_day": 2000
   },
   "particles": {
+    "forcing": "roms_small.nc",
     "file": "out.nc",
     "output_freq": [24, "h"]
   },
