@@ -38,7 +38,7 @@ def make_concentration(config):
             weight_file=weight_file,
             cell_area=config['user_input']['cell_area'],
             latdiff=config['user_input']['latdiff'],
-            londiff=config['user_input']['latdiff'],
+            londiff=config['user_input']['londiff'],
             max_age=filter_max_age_seconds,
         )
 
