@@ -38,3 +38,33 @@ into a concentration map, generate some figures and a simple report.
 
 The structure of the input files are documented as comments in the example
 files, which are located in `tests/end_to_end/ex1`.
+
+
+## Future work TODO/wish list
+
+Issues:
+- indexing error in concentration, where geojson cannot have poly_id that is not referenced in the production_data file
+- something strange happens when particles_per_day = 100
+    - this might be a me (aka Birgitta) problem 
+
+TODO:
+- using pultiple forcing files to cover larger area
+- set up preselected boundary boxes for the different fjords/sounds
+
+Nice to have: 
+- write relevant information into the attributes of the .nc files, such as:
+    - forcing used
+    - particle liifespan
+    - taucrit
+    - vertical mixing
+    - numerics setup
+- easy way to separate the steps
+    - e.g. 
+        - one: release particles from all cages
+        - one: ladim for all cages
+        - multiple: crecon
+            - test out different production data and thus weights
+    - e.g.
+        - one release
+        - multiple ladim, testing different taucrit
+        - one crecon pr. ladim output
