@@ -26,7 +26,7 @@ def make_concentration(config):
 
     # Step 3: Create concentration config file
     crecon_conc_fname = config['root_dir'] / config['concentration']['conf']
-    conc_fname = config['root_dir'] / config['concentration']['file']
+    conc_fname = config['root_dir'] / config['concentration']['conc_file']
     feed_factor = config['user_input']['feed_factor']
     weight_file = config['root_dir'] / config['concentration']['weight_file']
     with open(crecon_conc_fname, 'w', encoding='utf-8') as fp:
@@ -132,6 +132,10 @@ def count_particles_per_cage_and_dates(ladim_dset, poly_id, dates):
             coords=dict(poly_id=count_dset.variables['poly_id'][:]),
             dims=('release_time', 'poly_id'),
         ).sel(poly_id=poly_id)
+        # TODO: filter geojson poly_id after production data by date 
+        # got and error value not found in index if the geojson file 
+        # has a poly_id that is not in the production_data after it 
+        # has been filtered by .rls times
 
 
 def convert_feed_table_to_matrix_form(feed_df):
